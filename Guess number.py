@@ -2,40 +2,45 @@ import random
 print ('Hello, this is a guessing game. The computer chose a number between 1-20, you need to guess what it is.')
 
 def main():
-    Computer = random.randint(1, 20)
+    computer = random.randint(1, 20)
 
     def raffle():
         return (random)
     raffle()
 
-    def userguess(prompt):
+    def user_guess(prompt):
         guess = input(prompt).strip().lower()
-        while True:
-            try:
-                guess = int(guess)
-                break
-            except:
-                print("Error! This is not a number. Try again.")
-                continue
+        while not guess.isdigit():
+            print("Error! This is not a number. Try again. ")
+            guess = input(prompt).strip().lower()
         return guess
 
-    def checkguess():
-        YouGuess = input ("What is your guess?")
-        if int(Computer) == int(YouGuess):
-            askagain = input('That\s right!! well done. Would you like to play again?')
-            if 'y' in askagain:
-                main()
-            else:
-                print ('OK, Goodbye')
-                exit()
-        elif int(Computer) > int(YouGuess):
-            print ('Too low, try again ')
-            checkguess()
-        elif int(Computer) < int(YouGuess):
-            print('Too high, try again ')
-            checkguess()
+    def check_guess():
+        you_guess = input ("What is your guess? ")
+        if int(you_guess) == int(computer):
+            print ('That\s right!! well done')
+        elif int(you_guess) > int(computer):
+            print ('Too high, try again ')
+            check_guess()
+        elif int(you_guess) < int(computer):
+            print('Too low, try again ')
+            check_guess()
         else:
             print ('This is not a number, try again ')
-            checkguess()
-    checkguess()
+            check_guess()
+    check_guess()
+
+    def play_again():
+        while True:
+            cont = input ('Would you like to play again? (Yes or No) ').strip().lower()
+            if cont == 'yes'.strip().lower():
+                main()
+            elif cont == 'no'.strip().lower():
+                print('OK, Goodbye')
+                exit()
+            else:
+                print ('You types something else...')
+                play_again()
+    play_again()
+
 main()
