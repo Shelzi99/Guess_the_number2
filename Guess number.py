@@ -16,18 +16,15 @@ def main():
         return guess
 
     def check_guess():
-        you_guess = input ("What is your guess? ")
-        if int(you_guess) == int(computer):
-            print ('That\s right!! well done')
-        elif int(you_guess) > int(computer):
+        you_guess = user_guess("What is your guess? ")
+        if int(you_guess) > int(computer):
             print ('Too high, try again ')
             check_guess()
         elif int(you_guess) < int(computer):
             print('Too low, try again ')
             check_guess()
         else:
-            print ('This is not a number, try again ')
-            check_guess()
+            print ('That\'s right!! well done')
     check_guess()
 
     def play_again():
